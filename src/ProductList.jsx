@@ -260,16 +260,17 @@ const handlePlantsClick = (e) => {
     setTotalQuantity(
         calculateTotalQuantity()
     );
+    setAddedToCart({});
+    CartItems.forEach((item) => {
+        setAddedToCart((prevState) => ({
+            ...prevState,
+            [item.name]: true
+        }))
+    })
   }, [CartItems])
-
-  
 
   const handleAddToCart = (product, e) => {
     dispatch(addItem(product));
-    setAddedToCart((prevState) => ({
-       ...prevState,
-       [product.name]: true, // Set the product name as key and value as true to indicate it's added to cart
-     }));
   };
 
     return (
